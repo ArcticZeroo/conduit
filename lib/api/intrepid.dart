@@ -87,13 +87,25 @@ class Intrepid {
     return _states[command];
   }
 
-  Future<bool> makeRequest(String command) async {
+  Command getCommandFromString(String str) {
+    for (Command command in Command.values) {
+      if (commandToReadable[command] == str) {
+        return command;
+      }
+    }
+
+    return null;
+  }
+
+  Future<bool> makeRequest(String commandStr) async {
     try {
-      await makeRestRequest("https://hack.frozor.io/api/tesla/$command");
+      await makeRestRequest("https://hack.frozor.io/api/tesla/$commandStr");
     } catch (e) {
       return false;
     }
 
+    Command command = getCommandFromString(commandStr);
+    _states[command] = !_states[command];
     return true;
   }
 }
