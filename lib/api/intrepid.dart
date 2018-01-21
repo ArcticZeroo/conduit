@@ -99,7 +99,7 @@ class Intrepid {
 
   Future<bool> makeRequest(String commandStr) async {
     try {
-      await makeRestRequest("https://hack.frozor.io/api/tesla/$commandStr");
+      await makeRestRequest("http://66.70.190.177/api/tesla/$commandStr");
     } catch (e) {
       return false;
     }
