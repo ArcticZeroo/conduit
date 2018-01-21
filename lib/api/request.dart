@@ -21,7 +21,7 @@ Future makeRestRequest(String url) async {
 
   HttpClientRequest req;
   try {
-    req = (await client.postUrl(Uri.parse(url)));
+    req = (await client.getUrl(Uri.parse(url)));
   } catch (e) {
     return new Future.error(e);
   }
